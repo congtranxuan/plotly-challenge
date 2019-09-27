@@ -52,9 +52,15 @@ function buildMetadata(sample) {
           values: [9,1,1,1,1,1,1,1,1,1],
           type: "pie",
           domain: {column: 0},
-          //name: 'GHG Emissions',
-          hoverinfo: 'label',
-          hole: .4,
+          hole: .45,
+          rotation : 90,
+          direction : "clockwise",
+          textinfo : "label",
+          textposition : "inside",
+          hoverinfo : "none",
+          domain : {x : [0, 1], y : [0, 1]},
+          marker : {colors : ["white",'rgb(238,240,214)','rgb(238,247,189)','rgb(238,247,170)', 'rgb(208,254,167)', 'rgb(178,231,168)', 'rgb(134,231,168)',"rgb(77,231,168)","rgb(31,220,101)",'rgb(41,226,96)']},
+          showlegend : false
   
         }];            
           // var data = [
@@ -86,13 +92,32 @@ function buildMetadata(sample) {
           //     }
           //   }
           // ];
+
           console.log(data);
+
           var layout = { width: 600, height: 500, margin: { t: 0, b: 0 } };
+
+
           Plotly.newPlot("gauge", data, layout);  
 
+          var svg = d3.select("#gauge").append("svg").attr("width",600).attr("height",500);
+
+          var chartgroup = svg.append('g').attr("transform","translate(0,0)");
+
+          var theta = calcAngle(newsample.WFREQ);
+          var centerX = 300;
+          var centerY = 250;
+          var radius = 0.46;
           
-          
-         
+          console.log(theta);
+
+          var pointLocation = calcPosition(centerX,centerY,redius,theta);
+
+          console.log(pointLocation);
+
+          var liner = d3.line().x(pointLocation.x).y(pointLocation.y);
+
+          chartgroup.append("path").attr("d",liner).classed("line",true);
 
 
       });
@@ -102,6 +127,19 @@ function buildMetadata(sample) {
       // buildGauge(data.WFREQ);
   }
   
+  function calcAngle(decimal){
+    return angle = 180 - decimal*180/9;
+  }
+
+  function calcPosition(centerX, centerY, radius, theta) {
+    var coords = {};
+    var x = centerX + radius * Math.cos(theta);
+    var y = centerX + radius * Math.sin(theta);
+    coords.x = x;
+    coords.y = y;
+
+    return coords;
+  };
     
   function init() {
     // Grab a reference to the dropdown select element
