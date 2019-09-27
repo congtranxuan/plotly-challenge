@@ -48,7 +48,7 @@ function buildMetadata(sample) {
           });
 
         var data = [{
-          labels: ["","0-1","1-2","2-3","3-4","4-5","5-6","6-7","7-8","8-9"],
+          labels: [" ","0-1","1-2","2-3","3-4","4-5","5-6","6-7","7-8","8-9"],
           values: [9,1,1,1,1,1,1,1,1,1],
           type: "pie",
           domain: {column: 0},
@@ -100,24 +100,26 @@ function buildMetadata(sample) {
 
           Plotly.newPlot("gauge", data, layout);  
 
-          var svg = d3.select("#gauge").append("svg").attr("width",600).attr("height",500);
-
-          var chartgroup = svg.append('g').attr("transform","translate(0,0)");
+          var chartGroup = d3.select("#pathy").append("svg");
 
           var theta = calcAngle(newsample.WFREQ);
           var centerX = 300;
           var centerY = 250;
           var radius = 0.46;
           
+          console.log(chartGroup);
           console.log(theta);
 
-          var pointLocation = calcPosition(centerX,centerY,redius,theta);
+          var pointLocation = calcPosition(centerX,centerY,radius,theta);
 
           console.log(pointLocation);
-
-          var liner = d3.line().x(pointLocation.x).y(pointLocation.y);
-
-          chartgroup.append("path").attr("d",liner).classed("line",true);
+         
+          var liner = d3.line()
+                    
+          chartGroup.append("path").attr("d",liner(pointLocation))
+          .classed("line",true)
+          .attr("fill","red")
+          .attr("fill-opacity",1);
 
 
       });
@@ -132,11 +134,11 @@ function buildMetadata(sample) {
   }
 
   function calcPosition(centerX, centerY, radius, theta) {
-    var coords = {};
+    var coords = [];
     var x = centerX + radius * Math.cos(theta);
     var y = centerX + radius * Math.sin(theta);
-    coords.x = x;
-    coords.y = y;
+    coords.push([0, 0]);
+    coords.push([x, y]);
 
     return coords;
   };
