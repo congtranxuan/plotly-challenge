@@ -62,7 +62,9 @@ function buildMetadata(sample) {
           marker : {colors : ["white",'rgb(238,240,214)','rgb(238,247,189)','rgb(238,247,170)', 'rgb(208,254,167)', 'rgb(178,231,168)', 'rgb(134,231,168)',"rgb(77,231,168)","rgb(31,220,101)",'rgb(41,226,96)']},
           showlegend : false
   
-        }];            
+        }];    
+          // This code is using gauge chart format.
+
           // var data = [
           //   {
           //     domain: { x: [0, 0.75], y: [0, 0.75] },
@@ -93,13 +95,12 @@ function buildMetadata(sample) {
           //   }
           // ];
 
-          console.log(data);
+          //console.log(data);
+
 
           var layout = { width: 600, height: 500, margin: { t: 0, b: 0 } };
 
           Plotly.newPlot("gauge", data, layout);  
-
-          //var chartGroup = d3.select("#pathy").append("svg");
 
           var pat = d3.select("#gauge").select(".trace").append("g");
                     
@@ -146,8 +147,7 @@ function buildMetadata(sample) {
     var back = radius/8;
     var angle = [theta, theta + 90, theta + 180, theta - 90, theta];
     var rd = [radius, wide, back, wide, radius];
-    var pai = {"angle":angle,"rd":rd};
-
+    
     for (var i=0;i< rd.length; i++) {
 
       var x = centerX + rd[i] * Math.cos(angle[i] * Math.PI/180);
