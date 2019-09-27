@@ -100,7 +100,7 @@ function buildMetadata(sample) {
 
           Plotly.newPlot("gauge", data, layout);  
 
-          var chartGroup = d3.select(".svg-container").append("svg");
+          var chartGroup = d3.select("pathy").append("svg");
 
           var theta = calcAngle(newsample.WFREQ);
           var centerX = 300;
