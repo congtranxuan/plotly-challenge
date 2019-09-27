@@ -97,7 +97,13 @@ function buildMetadata(sample) {
 
           var layout = { width: 600, height: 500, margin: { t: 0, b: 0 } };
 
-          var chartGroup = d3.select("#gauge").append("svg");
+         
+
+          Plotly.newPlot("gauge", data, layout);  
+
+          //var chartGroup = d3.select("#pathy").append("svg");
+
+          var chartGroup = d3.select("svg-container").append("svg");
           var theta = calcAngle(newsample.WFREQ);
           var centerX = 300;
           var centerY = 250;
@@ -119,13 +125,7 @@ function buildMetadata(sample) {
           .attr("fill-opacity",1)
           .attr("stroke","red")
           .attr("stroke-width",2)
-          .attr("z-index","1");
-
-          Plotly.newPlot("gauge", data, layout);  
-
-          //var chartGroup = d3.select("#pathy").append("svg");
-
-         
+          .attr("z-index","5");
 
 
       });
