@@ -109,7 +109,7 @@ function buildMetadata(sample) {
           var theta = calcAngle(newsample.WFREQ);
           var centerX = 300;
           var centerY = 250;
-          var radius = 0.46;
+          var radius = 100;
           
           console.log(pat);
           console.log(theta);
@@ -144,8 +144,8 @@ function buildMetadata(sample) {
   function calcPosition(centerX, centerY, radius, theta) {
     var coords = [];
     var x = centerX + radius * Math.cos(theta);
-    var y = centerX + radius * Math.sin(theta);
-    coords.push([0, 0]);
+    var y = centerY - radius * Math.sin(theta);
+    coords.push([centerX, centerY]);
     coords.push([x, y]);
 
     return coords;
