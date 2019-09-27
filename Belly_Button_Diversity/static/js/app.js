@@ -103,21 +103,15 @@ function buildMetadata(sample) {
 
           //var chartGroup = d3.select("#pathy").append("svg");
 
-          var svg = d3.select(".svg-container").append("svg")
-          .attr("width", 600)
-          .attr("height", 500);
-
-          
-          var chartGroup = svg.append("g")
-          .attr("transform", `translate(0,0)`);
-
-    
+          var pat = d3.select(".trace").append("g")
+                    
+             
           var theta = calcAngle(newsample.WFREQ);
           var centerX = 300;
           var centerY = 250;
           var radius = 0.46;
           
-          console.log(chartGroup);
+          console.log(pat);
           console.log(theta);
 
           var pointLocation = calcPosition(centerX,centerY,radius,theta);
@@ -126,7 +120,7 @@ function buildMetadata(sample) {
          
           var liner = d3.line()
                     
-          chartGroup.append("path")
+          pat.append("path")
           .attr("d",liner(pointLocation))
           .classed("line",true)
           .attr("fill","none")
