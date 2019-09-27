@@ -123,7 +123,7 @@ function buildMetadata(sample) {
           .attr("fill-opacity",1)
           .attr("stroke","red")
           .attr("stroke-width",2)
-          .attr("z-index",1);
+          .attr("z-index","1");
 
 
       });
