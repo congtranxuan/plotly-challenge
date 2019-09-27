@@ -146,8 +146,8 @@ function buildMetadata(sample) {
     var back = radius/8;
     var angle = [theta, theta + 90, theta + 180, theta - 90];
     var rd = [radius, wide, back, wide];
-    var pair = {"angle":angle,"rd":rd};
-    pair.map(d => {
+    var pai = {"angle":angle,"rd":rd};
+    pai.map(d => {
       x = centerX + d.rd * Math.cos(d.angle * Math.PI/180);
       y = centerY - d.rd * Math.sin(d.angle * Math.PI/180);
       coords.push([x, y]);
