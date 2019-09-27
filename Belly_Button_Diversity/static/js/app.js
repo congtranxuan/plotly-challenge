@@ -142,7 +142,7 @@ function buildMetadata(sample) {
 
   function calcPosition(centerX, centerY, radius, theta) {
     var coords = [];
-    var wide = radius/10;
+    var wide = radius/11;
     var back = radius/8;
     var angle = [theta, theta + 90, theta + 180, theta - 90, theta];
     var rd = [radius, wide, back, wide, radius];
