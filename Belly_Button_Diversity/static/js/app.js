@@ -103,7 +103,7 @@ function buildMetadata(sample) {
 
           //var chartGroup = d3.select("#pathy").append("svg");
 
-          var chartGroup = d3.select("svg-container").append("svg");
+          var chartGroup = d3.select(".svg-container").append("svg");
           var theta = calcAngle(newsample.WFREQ);
           var centerX = 300;
           var centerY = 250;
