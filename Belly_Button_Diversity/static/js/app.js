@@ -122,7 +122,7 @@ function buildMetadata(sample) {
           pat.append("path")
           .attr("d",liner(pointLocation))
           .classed("line",true)
-          .attr("fill","none")
+          .attr("fill","red")
           .attr("fill-opacity",1)
           .attr("stroke","red")
           .attr("stroke-width",2)
@@ -144,8 +144,8 @@ function buildMetadata(sample) {
     var coords = [];
     var wide = radius/10;
     var back = radius/8;
-    var angle = [theta, theta + 90, theta + 180, theta - 90];
-    var rd = [radius, wide, back, wide];
+    var angle = [theta, theta + 90, theta + 180, theta - 90, theta];
+    var rd = [radius, wide, back, wide, radius];
     var pai = {"angle":angle,"rd":rd};
 
     for (var i=0;i< rd.length; i++) {
