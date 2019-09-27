@@ -148,12 +148,13 @@ function buildMetadata(sample) {
     var rd = [radius, wide, back, wide];
     var pai = {"angle":angle,"rd":rd};
 
-    pai.forEach(d => {
-      var x = centerX + d.rd * Math.cos(d.angle * Math.PI/180);
-      var y = centerY - d.rd * Math.sin(d.angle * Math.PI/180);
+    for (var i=0;i< rd.length; i++) {
+
+      var x = centerX + rd[i] * Math.cos(angle[i] * Math.PI/180);
+      var y = centerY - rd[i] * Math.sin(angle[i] * Math.PI/180);
       coords.push([x, y]);
 
-    });
+    };
     return coords;
   };
     
