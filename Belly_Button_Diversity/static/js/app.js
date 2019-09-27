@@ -104,6 +104,7 @@ function buildMetadata(sample) {
           var pat = d3.select("#gauge").select(".trace").append("g");
                     
           var newWFREQ = +newsample.WFREQ;
+          console.log(newWFREQ);
           var theta = calcAngle(newWFREQ);
           var centerX = 300;
           var centerY = 250;
