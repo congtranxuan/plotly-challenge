@@ -142,11 +142,16 @@ function buildMetadata(sample) {
 
   function calcPosition(centerX, centerY, radius, theta) {
     var coords = [];
-    var x = centerX + radius * Math.cos(theta * Math.PI/180);
-    var y = centerY - radius * Math.sin(theta * Math.PI/180);
-    coords.push([centerX, centerY]);
-    coords.push([x, y]);
-
+    var wide = radius/10;
+    var back = radius/8;
+    var angle = [theta, theta + 90, theta + 180, theta - 90];
+    var rd = [radius, wide, back, wide];
+    var pair = {"angle":angle,"rd":rd};
+    pair.map(d => {
+      x = centerX + d.rd * Math.cos(d.angle * Math.PI/180);
+      y = centerY - d.rd * Math.sin(d.angle * Math.PI/180);
+      coords.push([x, y]);
+    });
     return coords;
   };
     
