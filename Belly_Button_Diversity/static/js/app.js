@@ -142,8 +142,8 @@ function buildMetadata(sample) {
 
   function calcPosition(centerX, centerY, radius, theta) {
     var coords = [];
-    var x = centerX + radius * Math.cos(theta);
-    var y = centerY - radius * Math.sin(theta);
+    var x = centerX + radius * Math.cos(theta * Math.PI/180);
+    var y = centerY - radius * Math.sin(theta * Math.PI/180);
     coords.push([centerX, centerY]);
     coords.push([x, y]);
 
