@@ -100,7 +100,7 @@ function buildMetadata(sample) {
 
           Plotly.newPlot("gauge", data, layout);  
 
-          var chartGroup = d3.select("#pathy").append("svg");
+          var chartGroup = d3.select(".plot-container plotly").append("svg");
 
           var theta = calcAngle(newsample.WFREQ);
           var centerX = 300;
@@ -116,10 +116,14 @@ function buildMetadata(sample) {
          
           var liner = d3.line()
                     
-          chartGroup.append("path").attr("d",liner(pointLocation))
+          chartGroup.append("path")
+          .attr("d",liner(pointLocation))
           .classed("line",true)
-          .attr("fill","red")
-          .attr("fill-opacity",1);
+          .attr("fill","none")
+          .attr("fill-opacity",1)
+          .attr("stroke","red")
+          .attr("stroke-width",2)
+          .attr("z-index",1);
 
 
       });
