@@ -1,0 +1,133 @@
+function buildPlots(sample) {
+    /* data route */
+    var url=`/samples/${sample}`;
+    d3.json(url).then(function(response){
+        console.log(response);
+        let data = response;
+        let samplevalues = data.sample_values.slice(0,10);
+        let otuids = data.otu_ids.slice(0,10);
+        let otulabels = data.otu_labels.slice(0,10);
+
+        var data1 = [{ labels: otuids, 
+                      values: samplevalues, 
+                      type: "pie",
+                      hovertext: otulabels
+        }];
+        console.log(data1);
+
+    Plotly.newPlot("pie", data1);
+    var hovertext = [];
+    for (var i in data.otu_ids) {
+      hovertext.push(`(${data.otu_ids[i]},${data.sample_values[i]})<br>${data.otu_labels[i]}`);
+    };
+    
+    var data2 = [{ x: data.otu_ids,
+                  y: data.sample_values,
+                  mode: "markers",
+                  text: hovertext,
+                  marker: {
+                    color: data.otu_ids,
+                    size: data.sample_values
+                  }
+                }];
+    console.log(data2);
+    Plotly.newPlot("bubble",data2);
+    });
+  };
+
+
+function buildMetadata(sample) {
+      var url = `/metadata/${sample}`;
+      d3.json(url).then(function(response) {
+        var newsample = response;
+        console.log(newsample);
+        var metadata = d3.select("#sample-metadata").html("");
+        console.log(metadata);
+        Object.entries(newsample).forEach(([key,value])=>{
+          metadata.append("div").append("b").text(`${key} : ${value}`);
+          });
+
+        var data = [{
+          labels: ["","0-1","1-2","2-3","3-4","4-5","5-6","6-7","7-8","8-9"],
+          values: [9,1,1,1,1,1,1,1,1,1],
+          type: "pie",
+          domain: {column: 0},
+          //name: 'GHG Emissions',
+          hoverinfo: 'label',
+          hole: .4,
+  
+        }];            
+          // var data = [
+          //   {
+          //     domain: { x: [0, 0.75], y: [0, 0.75] },
+          //     value: newsample.WFREQ,
+          //     title: { text: `<b>Belly Button Washing Frequency <br>Scrubs per Week`},
+          //     type: "indicator",
+          //     mode: "gauge+number",
+          //     //delta: { reference: 7 },
+          //     gauge: {
+          //       axis: { range: [null, 9] },
+          //       steps: [
+          //         { range: [0, 1], color: 'rgb(238,240,214)' },
+          //         { range: [1, 2], color: 'rgb(238,247,189)' },
+          //         { range: [2, 3], color: 'rgb(238,247,170)' },
+          //         { range: [3, 4], color: 'rgb(208,254,167)' },
+          //         { range: [4, 5], color: 'rgb(178,231,168)' },
+          //         { range: [5, 6], color: 'rgb(134,231,168)' },
+          //         { range: [6, 7], color: 'rgb(77,231,168)' },
+          //         { range: [7, 8], color: 'rgb(31,220,101)' },
+          //         { range: [8, 9], color: 'rgb(41,226,96)' }
+          //       ],
+          //       threshold: {
+          //         line: { color: "red", width: 5 },
+          //         thickness: 0.75,
+          //         value: 9
+          //       }
+          //     }
+          //   }
+          // ];
+          console.log(data);
+          var layout = { width: 600, height: 500, margin: { t: 0, b: 0 } };
+          Plotly.newPlot("gauge", data, layout);  
+
+          
+          
+         
+
+
+      });
+      
+      
+      // BONUS: Build the Gauge Chart
+      // buildGauge(data.WFREQ);
+  }
+  
+    
+  function init() {
+    // Grab a reference to the dropdown select element
+    var selector = d3.select("#selDataset");
+  
+    // Use the list of sample names to populate the select options
+    d3.json("/names").then((sampleNames) => {
+      sampleNames.forEach((sample) => {
+        selector
+          .append("option")
+          .text(sample)
+          .property("value", sample);
+      });
+  
+      // Use the first sample from the list to build the initial plots
+      const firstSample = sampleNames[0];
+      buildPlots(firstSample);
+      buildMetadata(firstSample);
+    });
+  };
+  
+  function optionChanged(newSample) {
+    // Fetch new data each time a new sample is selected
+    buildPlots(newSample);
+    buildMetadata(newSample);
+  };
+  
+  // Initialize the dashboard
+  init();
