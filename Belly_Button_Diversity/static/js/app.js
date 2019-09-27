@@ -101,7 +101,7 @@ function buildMetadata(sample) {
 
           //var chartGroup = d3.select("#pathy").append("svg");
 
-          var pat = d3.select(".trace").append("g");
+          var pat = d3.select("#gauge").select(".trace").append("g");
                     
              
           var theta = calcAngle(newsample.WFREQ);
