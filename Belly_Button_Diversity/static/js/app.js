@@ -103,8 +103,8 @@ function buildMetadata(sample) {
 
           var pat = d3.select("#gauge").select(".trace").append("g");
                     
-             
-          var theta = calcAngle(newsample.WFREQ);
+          var newWFREQ = +newsample.WFREQ;
+          var theta = calcAngle(newWFREQ);
           var centerX = 300;
           var centerY = 250;
           var radius = 105;
@@ -137,7 +137,7 @@ function buildMetadata(sample) {
   
   function calcAngle(decimal){
     return angle = 180 - decimal*180/9;
-  }
+  };
 
   function calcPosition(centerX, centerY, radius, theta) {
     var coords = [];
