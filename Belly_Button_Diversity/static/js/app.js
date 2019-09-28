@@ -58,7 +58,7 @@ function buildMetadata(sample) {
           textinfo : "label",
           textposition : "inside",
           hoverinfo : "none",
-          domain : {x : [0, 0.5], y : [0, 0.5]},
+          domain : {x : [0, 1], y : [0, 1]},
           marker : {colors : ["white",'rgb(238,240,214)','rgb(238,247,189)','rgb(238,247,170)', 'rgb(208,254,167)', 'rgb(178,231,168)', 'rgb(134,231,168)',"rgb(77,231,168)","rgb(31,220,101)",'rgb(41,226,96)']},
           showlegend : false
   
