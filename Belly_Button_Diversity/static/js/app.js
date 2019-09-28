@@ -102,7 +102,7 @@ function buildMetadata(sample) {
 
           Plotly.newPlot("gauge", data, layout);  
 
-          var pat = d3.select("#gauge").select(".trace").append("g");
+          var pat = d3.select("#gauge").select(".trace").append("g").attr("class","slice");
                     
           var newWFREQ = +newsample.WFREQ;
           console.log(newWFREQ);
@@ -124,6 +124,7 @@ function buildMetadata(sample) {
           .attr("d",liner(pointLocation))
           .classed("line",true)
           .attr("fill","red")
+          .attr("class","surface")
           .attr("fill-opacity",1)
           .attr("stroke","red")
           .attr("stroke-width",2)
