@@ -98,7 +98,7 @@ function buildMetadata(sample) {
           //console.log(data);
 
 
-          var layout = {title: "<strong>Belly Button Washing Frequency </strong> <br> Scrubs per Week", width: 600, height: 500, margin: { t: 50, b: 50 } };
+          var layout = {title: `<b> Belly Button Washing Frequency <br> Scrubs per Week`, width: 600, height: 500, margin: { t: 80, b: 50 } };
 
           Plotly.newPlot("gauge", data, layout);  
 
