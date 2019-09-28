@@ -51,7 +51,7 @@ function buildMetadata(sample) {
           labels: [" ","0-1","1-2","2-3","3-4","4-5","5-6","6-7","7-8","8-9"],
           values: [9,1,1,1,1,1,1,1,1,1],
           type: "pie",
-          domain: {column: 0},
+          //domain: {column: 0},
           hole: .45,
           rotation : 90,
           direction : "clockwise",
